@@ -24,13 +24,13 @@ uninstall-local-monetdb-mcl-1_13_jar:
 	$(RM) $(DESTDIR)$(datadir)/monetdb/lib/monetdb-mcl-1.13.jar
 all-local-monetdb-mcl-1_13_jar: monetdb-mcl-1.13.jar
 
-monetdb-jdbc-2.21.jar: distjdbc_ant_target
-install-exec-local-monetdb-jdbc-2_21_jar: monetdb-jdbc-2.21.jar
+monetdb-jdbc-2.23.jar: distjdbc_ant_target
+install-exec-local-monetdb-jdbc-2_23_jar: monetdb-jdbc-2.23.jar
 	-mkdir -p $(DESTDIR)$(datadir)/monetdb/lib
-	$(INSTALL) $< $(DESTDIR)$(datadir)/monetdb/lib/monetdb-jdbc-2.21.jar
-uninstall-local-monetdb-jdbc-2_21_jar:
-	$(RM) $(DESTDIR)$(datadir)/monetdb/lib/monetdb-jdbc-2.21.jar
-all-local-monetdb-jdbc-2_21_jar: monetdb-jdbc-2.21.jar
+	$(INSTALL) $< $(DESTDIR)$(datadir)/monetdb/lib/monetdb-jdbc-2.23.jar
+uninstall-local-monetdb-jdbc-2_23_jar:
+	$(RM) $(DESTDIR)$(datadir)/monetdb/lib/monetdb-jdbc-2.23.jar
+all-local-monetdb-jdbc-2_23_jar: monetdb-jdbc-2.23.jar
 
 jdbcclient.jar: distjdbc_ant_target
 install-exec-local-jdbcclient_jar: jdbcclient.jar
@@ -45,9 +45,9 @@ else
 install-exec-local-monetdb-mcl-1_13_jar:
 uninstall-local-monetdb-mcl-1_13_jar:
 all-local-monetdb-mcl-1_13_jar:
-install-exec-local-monetdb-jdbc-2_21_jar:
-uninstall-local-monetdb-jdbc-2_21_jar:
-all-local-monetdb-jdbc-2_21_jar:
+install-exec-local-monetdb-jdbc-2_23_jar:
+uninstall-local-monetdb-jdbc-2_23_jar:
+all-local-monetdb-jdbc-2_23_jar:
 install-exec-local-jdbcclient_jar:
 uninstall-local-jdbcclient_jar:
 all-local-jdbcclient_jar:
@@ -60,9 +60,9 @@ else
 install-exec-local-monetdb-mcl-1_13_jar:
 uninstall-local-monetdb-mcl-1_13_jar:
 all-local-monetdb-mcl-1_13_jar:
-install-exec-local-monetdb-jdbc-2_21_jar:
-uninstall-local-monetdb-jdbc-2_21_jar:
-all-local-monetdb-jdbc-2_21_jar:
+install-exec-local-monetdb-jdbc-2_23_jar:
+uninstall-local-monetdb-jdbc-2_23_jar:
+all-local-monetdb-jdbc-2_23_jar:
 install-exec-local-jdbcclient_jar:
 uninstall-local-jdbcclient_jar:
 all-local-jdbcclient_jar:
@@ -119,8 +119,8 @@ JAVA_HOME =  @JAVA_HOME@
 BUILT_SOURCES =
 MOSTLYCLEANFILES =
 EXTRA_DIST = Makefile.ag Makefile.msc build.properties build.xml release.txt
-uninstall-local: uninstall-local-jdbcclient_jar uninstall-local-merocontrol_jar uninstall-local-monetdb-jdbc-2_21_jar uninstall-local-monetdb-mcl-1_13_jar
-install-exec-local: install-exec-local-jdbcclient_jar install-exec-local-merocontrol_jar install-exec-local-monetdb-jdbc-2_21_jar install-exec-local-monetdb-mcl-1_13_jar
-all-local: all-local-jdbcclient_jar all-local-merocontrol_jar all-local-monetdb-jdbc-2_21_jar all-local-monetdb-mcl-1_13_jar
+uninstall-local: uninstall-local-jdbcclient_jar uninstall-local-merocontrol_jar uninstall-local-monetdb-jdbc-2_23_jar uninstall-local-monetdb-mcl-1_13_jar
+install-exec-local: install-exec-local-jdbcclient_jar install-exec-local-merocontrol_jar install-exec-local-monetdb-jdbc-2_23_jar install-exec-local-monetdb-mcl-1_13_jar
+all-local: all-local-jdbcclient_jar all-local-merocontrol_jar all-local-monetdb-jdbc-2_23_jar all-local-monetdb-mcl-1_13_jar
 
   include $(top_srcdir)/buildtools/conf/rules.mk

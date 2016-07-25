@@ -17,6 +17,12 @@ AM_CPPFLAGS = -I$(srcdir)
 dist-hook:
 	mkdir -p $(distdir)/Tests
 	cp -pR $(srcdir)/Tests/* $(distdir)/Tests
+	mkdir -p $(distdir)/conformance
+	cp -pR $(srcdir)/conformance/* $(distdir)/conformance
+	mkdir -p $(distdir)/functions
+	cp -pR $(srcdir)/functions/* $(distdir)/functions
+	mkdir -p $(distdir)/pg_regression
+	cp -pR $(srcdir)/pg_regression/* $(distdir)/pg_regression
 BUILT_SOURCES =
 MOSTLYCLEANFILES =
 EXTRA_DIST = Makefile.ag Makefile.msc 40_geom.sql

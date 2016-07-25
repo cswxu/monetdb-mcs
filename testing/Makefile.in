@@ -127,7 +127,7 @@ Mdiff_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 dist_Mtimeout_OBJECTS = Mtimeout.$(OBJEXT)
 nodist_Mtimeout_OBJECTS =
 Mtimeout_OBJECTS = $(dist_Mtimeout_OBJECTS) $(nodist_Mtimeout_OBJECTS)
-Mtimeout_LDADD = $(LDADD)
+Mtimeout_DEPENDENCIES = $(am__DEPENDENCIES_1)
 Mtimeout_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(Mtimeout_LDFLAGS) $(LDFLAGS) -o $@
@@ -524,6 +524,7 @@ zlib_LIBS = @zlib_LIBS@
 AUTOMAKE_OPTIONS = no-dependencies 1.4 foreign
 Mtimeoutdir = $(bindir)
 @NOT_WIN32_TRUE@C_Mtimeout = Mtimeout
+Mtimeout_LDADD = $(PTHREAD_LIBS)
 Mtimeout_LDFLAGS = -export-dynamic
 nodist_Mtimeout_SOURCES = 
 dist_Mtimeout_SOURCES = Mtimeout.c

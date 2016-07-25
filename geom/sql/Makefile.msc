@@ -10,7 +10,7 @@ all: all-msc
 check: check-msc
 install: install-msc
 INCLUDES = -I$(srcdir)
-EXTRA_DIST_DIR =  Tests
+EXTRA_DIST_DIR =  Tests conformance functions pg_regression
 40_geom.sql: "$(srcdir)\40_geom.sql"
 	$(INSTALL) "$(srcdir)\40_geom.sql" "40_geom.sql"
 all-msc: "40_geom.sql"

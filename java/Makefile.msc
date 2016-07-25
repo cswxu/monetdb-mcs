@@ -41,7 +41,7 @@ callant0.bat:
 distjdbc_ant_target: callant0.bat
 	callant0.bat
 monetdb-mcl-1.13.jar: distjdbc_ant_target
-monetdb-jdbc-2.21.jar: distjdbc_ant_target
+monetdb-jdbc-2.23.jar: distjdbc_ant_target
 jdbcclient.jar: distjdbc_ant_target
 
 !ELSE
@@ -73,9 +73,9 @@ distmerocontrol_ant_target:
 
 build-all: $(BUILT_SOURCES) all-recursive all-msc
 all-msc: "distjdbc_ant_target" "distmerocontrol_ant_target"
-check-msc: all-msc "monetdb-mcl-1.13.jar" "merocontrol.jar" "jdbcclient.jar" "monetdb-jdbc-2.21.jar"
+check-msc: all-msc "monetdb-mcl-1.13.jar" "merocontrol.jar" "jdbcclient.jar" "monetdb-jdbc-2.23.jar"
 install-msc: install-exec install-data
-install-exec:  "install_monetdb-mcl-1.13.jar" "install_merocontrol.jar" "install_jdbcclient.jar" "install_monetdb-jdbc-2.21.jar" 
+install-exec:  "install_monetdb-mcl-1.13.jar" "install_merocontrol.jar" "install_jdbcclient.jar" "install_monetdb-jdbc-2.23.jar" 
 !IF defined(HAVE_JAVA) && defined(HAVE_JAVAJDBC)
 install_monetdb-mcl-1.13.jar: "monetdb-mcl-1.13.jar" "$(datadir)\monetdb\lib"
 	$(INSTALL) "monetdb-mcl-1.13.jar" "$(datadir)\monetdb\lib\monetdb-mcl-1.13.jar"
@@ -95,10 +95,10 @@ install_jdbcclient.jar: "jdbcclient.jar" "$(datadir)\monetdb\lib"
 install_jdbcclient.jar:
 !ENDIF
 !IF defined(HAVE_JAVA) && defined(HAVE_JAVAJDBC)
-install_monetdb-jdbc-2.21.jar: "monetdb-jdbc-2.21.jar" "$(datadir)\monetdb\lib"
-	$(INSTALL) "monetdb-jdbc-2.21.jar" "$(datadir)\monetdb\lib\monetdb-jdbc-2.21.jar"
+install_monetdb-jdbc-2.23.jar: "monetdb-jdbc-2.23.jar" "$(datadir)\monetdb\lib"
+	$(INSTALL) "monetdb-jdbc-2.23.jar" "$(datadir)\monetdb\lib\monetdb-jdbc-2.23.jar"
 !ELSE
-install_monetdb-jdbc-2.21.jar:
+install_monetdb-jdbc-2.23.jar:
 !ENDIF
 "$(datadir)\monetdb\lib":
 	if not exist "$(datadir)\monetdb\lib" $(MKDIR) "$(datadir)\monetdb\lib"

@@ -639,6 +639,12 @@ uninstall-local-40_geom.sql:
 dist-hook:
 	mkdir -p $(distdir)/Tests
 	cp -pR $(srcdir)/Tests/* $(distdir)/Tests
+	mkdir -p $(distdir)/conformance
+	cp -pR $(srcdir)/conformance/* $(distdir)/conformance
+	mkdir -p $(distdir)/functions
+	cp -pR $(srcdir)/functions/* $(distdir)/functions
+	mkdir -p $(distdir)/pg_regression
+	cp -pR $(srcdir)/pg_regression/* $(distdir)/pg_regression
 uninstall-local: uninstall-local-40_geom.sql
 install-exec-local: install-exec-local-40_geom.sql
 

@@ -10,7 +10,7 @@ dnl Copyright 1997 - July 2008 CWI, August 2008 - 2016 MonetDB B.V.
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.60)
-AC_INIT([MonetDB], [11.23.3], [info@monetdb.org], [MonetDB], [http://www.monetdb.org/])
+AC_INIT([MonetDB], [11.23.7], [info@monetdb.org], [MonetDB], [http://www.monetdb.org/])
 AC_CONFIG_AUX_DIR([buildtools/conf])
 AC_CONFIG_MACRO_DIR([buildtools/conf])
 AC_CANONICAL_HOST
@@ -124,7 +124,7 @@ case "$CC" in
 	;;
 esac
 
-AC_DEFINE(MONETDB_RELEASE, "Jun2016", [Release name or "unreleased"])
+AC_DEFINE(MONETDB_RELEASE, "Jun2016-SP1", [Release name or "unreleased"])
 
 dft_gdk=yes
 AC_ARG_ENABLE(gdk,
@@ -2611,16 +2611,16 @@ AC_SUBST(GEOS_INCS)
 AC_SUBST(GEOS_LIBS)
 
 # fits, only used by sql
-org_have_cfitsio=no
-have_cfitsio=$org_have_cfitsio
+org_have_fits=no
+have_fits=$org_have_fits
 if test "x$enable_fits" != xno; then
 	PKG_CHECK_MODULES([cfitsio], [cfitsio],
-		[have_cfitsio=yes; AC_DEFINE(HAVE_FITS, 1, [Define if the fits module is to be enabled])],
-		[have_cfitsio=no; why_have_cfitsio="(cfitsio library not found)"
+		[have_fits="yes"; AC_DEFINE(HAVE_FITS, 1, [Define if the fits module is to be enabled])],
+		[have_fits="no"; why_have_fits="(cfitsio library not found)"
 		 if test "x$enable_fits" = xyes; then AC_MSG_ERROR([cfitsio library required for FITS support]); fi;
 		 enable_fits=no; disable_fits="(cfitsio library not found)"])
 fi
-AM_CONDITIONAL(HAVE_FITS, test x"$have_cfitsio" != xno)
+AM_CONDITIONAL(HAVE_FITS, test x"$have_fits" != xno)
 
 # netcdf, only used by sql
 org_have_netcdf=no

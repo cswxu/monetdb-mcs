@@ -58,6 +58,7 @@ if NOT_WIN32
  C_Mtimeout = Mtimeout
  Mtimeout_PROGRAMS =Mtimeout
 endif
+Mtimeout_LDADD = $(PTHREAD_LIBS)
 Mtimeout_LDFLAGS = -export-dynamic
 nodist_Mtimeout_SOURCES =
 dist_Mtimeout_SOURCES = Mtimeout.c

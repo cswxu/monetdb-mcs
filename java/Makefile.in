@@ -825,13 +825,13 @@ uninstall-am: uninstall-local
 @HAVE_JAVAJDBC_TRUE@@HAVE_JAVA_TRUE@	$(RM) $(DESTDIR)$(datadir)/monetdb/lib/monetdb-mcl-1.13.jar
 @HAVE_JAVAJDBC_TRUE@@HAVE_JAVA_TRUE@all-local-monetdb-mcl-1_13_jar: monetdb-mcl-1.13.jar
 
-@HAVE_JAVAJDBC_TRUE@@HAVE_JAVA_TRUE@monetdb-jdbc-2.21.jar: distjdbc_ant_target
-@HAVE_JAVAJDBC_TRUE@@HAVE_JAVA_TRUE@install-exec-local-monetdb-jdbc-2_21_jar: monetdb-jdbc-2.21.jar
+@HAVE_JAVAJDBC_TRUE@@HAVE_JAVA_TRUE@monetdb-jdbc-2.23.jar: distjdbc_ant_target
+@HAVE_JAVAJDBC_TRUE@@HAVE_JAVA_TRUE@install-exec-local-monetdb-jdbc-2_23_jar: monetdb-jdbc-2.23.jar
 @HAVE_JAVAJDBC_TRUE@@HAVE_JAVA_TRUE@	-mkdir -p $(DESTDIR)$(datadir)/monetdb/lib
-@HAVE_JAVAJDBC_TRUE@@HAVE_JAVA_TRUE@	$(INSTALL) $< $(DESTDIR)$(datadir)/monetdb/lib/monetdb-jdbc-2.21.jar
-@HAVE_JAVAJDBC_TRUE@@HAVE_JAVA_TRUE@uninstall-local-monetdb-jdbc-2_21_jar:
-@HAVE_JAVAJDBC_TRUE@@HAVE_JAVA_TRUE@	$(RM) $(DESTDIR)$(datadir)/monetdb/lib/monetdb-jdbc-2.21.jar
-@HAVE_JAVAJDBC_TRUE@@HAVE_JAVA_TRUE@all-local-monetdb-jdbc-2_21_jar: monetdb-jdbc-2.21.jar
+@HAVE_JAVAJDBC_TRUE@@HAVE_JAVA_TRUE@	$(INSTALL) $< $(DESTDIR)$(datadir)/monetdb/lib/monetdb-jdbc-2.23.jar
+@HAVE_JAVAJDBC_TRUE@@HAVE_JAVA_TRUE@uninstall-local-monetdb-jdbc-2_23_jar:
+@HAVE_JAVAJDBC_TRUE@@HAVE_JAVA_TRUE@	$(RM) $(DESTDIR)$(datadir)/monetdb/lib/monetdb-jdbc-2.23.jar
+@HAVE_JAVAJDBC_TRUE@@HAVE_JAVA_TRUE@all-local-monetdb-jdbc-2_23_jar: monetdb-jdbc-2.23.jar
 
 @HAVE_JAVAJDBC_TRUE@@HAVE_JAVA_TRUE@jdbcclient.jar: distjdbc_ant_target
 @HAVE_JAVAJDBC_TRUE@@HAVE_JAVA_TRUE@install-exec-local-jdbcclient_jar: jdbcclient.jar
@@ -844,9 +844,9 @@ uninstall-am: uninstall-local
 @HAVE_JAVAJDBC_FALSE@@HAVE_JAVA_TRUE@install-exec-local-monetdb-mcl-1_13_jar:
 @HAVE_JAVAJDBC_FALSE@@HAVE_JAVA_TRUE@uninstall-local-monetdb-mcl-1_13_jar:
 @HAVE_JAVAJDBC_FALSE@@HAVE_JAVA_TRUE@all-local-monetdb-mcl-1_13_jar:
-@HAVE_JAVAJDBC_FALSE@@HAVE_JAVA_TRUE@install-exec-local-monetdb-jdbc-2_21_jar:
-@HAVE_JAVAJDBC_FALSE@@HAVE_JAVA_TRUE@uninstall-local-monetdb-jdbc-2_21_jar:
-@HAVE_JAVAJDBC_FALSE@@HAVE_JAVA_TRUE@all-local-monetdb-jdbc-2_21_jar:
+@HAVE_JAVAJDBC_FALSE@@HAVE_JAVA_TRUE@install-exec-local-monetdb-jdbc-2_23_jar:
+@HAVE_JAVAJDBC_FALSE@@HAVE_JAVA_TRUE@uninstall-local-monetdb-jdbc-2_23_jar:
+@HAVE_JAVAJDBC_FALSE@@HAVE_JAVA_TRUE@all-local-monetdb-jdbc-2_23_jar:
 @HAVE_JAVAJDBC_FALSE@@HAVE_JAVA_TRUE@install-exec-local-jdbcclient_jar:
 @HAVE_JAVAJDBC_FALSE@@HAVE_JAVA_TRUE@uninstall-local-jdbcclient_jar:
 @HAVE_JAVAJDBC_FALSE@@HAVE_JAVA_TRUE@all-local-jdbcclient_jar:
@@ -854,9 +854,9 @@ uninstall-am: uninstall-local
 @HAVE_JAVA_FALSE@install-exec-local-monetdb-mcl-1_13_jar:
 @HAVE_JAVA_FALSE@uninstall-local-monetdb-mcl-1_13_jar:
 @HAVE_JAVA_FALSE@all-local-monetdb-mcl-1_13_jar:
-@HAVE_JAVA_FALSE@install-exec-local-monetdb-jdbc-2_21_jar:
-@HAVE_JAVA_FALSE@uninstall-local-monetdb-jdbc-2_21_jar:
-@HAVE_JAVA_FALSE@all-local-monetdb-jdbc-2_21_jar:
+@HAVE_JAVA_FALSE@install-exec-local-monetdb-jdbc-2_23_jar:
+@HAVE_JAVA_FALSE@uninstall-local-monetdb-jdbc-2_23_jar:
+@HAVE_JAVA_FALSE@all-local-monetdb-jdbc-2_23_jar:
 @HAVE_JAVA_FALSE@install-exec-local-jdbcclient_jar:
 @HAVE_JAVA_FALSE@uninstall-local-jdbcclient_jar:
 @HAVE_JAVA_FALSE@all-local-jdbcclient_jar:
@@ -884,9 +884,9 @@ dist-hook:
 @HAVE_JAVA_FALSE@install-exec-local-merocontrol_jar:
 @HAVE_JAVA_FALSE@uninstall-local-merocontrol_jar:
 @HAVE_JAVA_FALSE@all-local-merocontrol_jar:
-uninstall-local: uninstall-local-jdbcclient_jar uninstall-local-merocontrol_jar uninstall-local-monetdb-jdbc-2_21_jar uninstall-local-monetdb-mcl-1_13_jar
-install-exec-local: install-exec-local-jdbcclient_jar install-exec-local-merocontrol_jar install-exec-local-monetdb-jdbc-2_21_jar install-exec-local-monetdb-mcl-1_13_jar
-all-local: all-local-jdbcclient_jar all-local-merocontrol_jar all-local-monetdb-jdbc-2_21_jar all-local-monetdb-mcl-1_13_jar
+uninstall-local: uninstall-local-jdbcclient_jar uninstall-local-merocontrol_jar uninstall-local-monetdb-jdbc-2_23_jar uninstall-local-monetdb-mcl-1_13_jar
+install-exec-local: install-exec-local-jdbcclient_jar install-exec-local-merocontrol_jar install-exec-local-monetdb-jdbc-2_23_jar install-exec-local-monetdb-mcl-1_13_jar
+all-local: all-local-jdbcclient_jar all-local-merocontrol_jar all-local-monetdb-jdbc-2_23_jar all-local-monetdb-mcl-1_13_jar
 
   include $(top_srcdir)/buildtools/conf/rules.mk
 

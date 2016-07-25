@@ -211,6 +211,9 @@ freeMalBlk(MalBlkPtr mb)
 	if (mb->help)
 		GDKfree(mb->help);
 	mb->help = 0;
+	if (mb->marker)
+		GDKfree(mb->marker);
+	mb->marker = 0;
 	mb->inlineProp = 0;
 	mb->unsafeProp = 0;
 	GDKfree(mb);
@@ -298,6 +301,7 @@ addtoMalBlkHistory(MalBlkPtr mb, str marker)
 		if (cpy == NULL)
 			return;				/* ignore history */
 		cpy->history = NULL;
+		GDKfree(mb->marker);
 		mb->marker = GDKstrdup(marker);
 		if (mb->history == NULL)
 			mb->history = cpy;
@@ -643,6 +647,7 @@ getVarName(MalBlkPtr mb, int i)
 	nme = mb->var[i]->name;
 
 	if (nme == 0 || *nme =='_') {
+		GDKfree(nme);
 		snprintf(buf, IDLENGTH, "%c_%d", refMarker(mb,i), mb->var[i]->tmpindex);
 		nme = mb->var[i]->name = GDKstrdup(buf);
 	}
@@ -1538,7 +1543,7 @@ pushArgument(MalBlkPtr mb, InstrPtr p, int varid)
 			freeInstruction(p);
 			return NULL;
 		}
-		memcpy((char *) pn, (char *) p, space);
+		memcpy(pn, p, space);
 		GDKfree(p);
 		pn->maxarg += MAXARG;
 		/* we have to keep track on the maximal arguments/block

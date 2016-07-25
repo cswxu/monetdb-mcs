@@ -617,7 +617,7 @@
 #define MONETDB5_PASSWDHASH "SHA512"
 
 /* Release name or "unreleased" */
-#define MONETDB_RELEASE "Jun2016"
+#define MONETDB_RELEASE "Jun2016-SP1"
 
 /* Define if the oid type should use 32 bits on a 64-bit architecture */
 /* #undef MONET_OID32 */
@@ -635,7 +635,7 @@
 #define PACKAGE_NAME "MonetDB"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "MonetDB 11.23.3"
+#define PACKAGE_STRING "MonetDB 11.23.7"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "MonetDB"
@@ -644,7 +644,7 @@
 #define PACKAGE_URL "http://www.monetdb.org/"
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "11.23.3"
+#define PACKAGE_VERSION "11.23.7"
 
 /* Path separator */
 #define PATH_SEP ':'
@@ -741,7 +741,7 @@
 
 
 /* Version number of package */
-#define VERSION "11.23.3"
+#define VERSION "11.23.7"
 
 /* Define on Microsoft Windows (also under Cygwin) */
 /* #undef WIN32 */

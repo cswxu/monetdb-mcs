@@ -10,6 +10,8 @@ dist-hook:
 	cp -pR $(srcdir)/Tests/* $(distdir)/Tests
 	mkdir -p $(distdir)/ruby
 	cp -pR $(srcdir)/ruby/* $(distdir)/ruby
+	mkdir -p $(distdir)/R
+	cp -pR $(srcdir)/R/* $(distdir)/R
 AM_CPPFLAGS = -I$(srcdir)
 if HAVE_MAPI
 HAVE_MAPI_1_SUBDIR = mapilib

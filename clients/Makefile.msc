@@ -9,7 +9,7 @@ srcdir = $(TOPDIR)\..\clients
 all: build-all
 check: check-recursive check-msc
 install: install-recursive install-msc
-EXTRA_DIST_DIR =  Tests ruby
+EXTRA_DIST_DIR =  Tests ruby R
 INCLUDES = -I$(srcdir)
 !IFDEF HAVE_MAPI
 HAVE_MAPI-1-all: "HAVE_MAPI-1-dir" "HAVE_MAPI-1-Makefile"

@@ -832,6 +832,8 @@ dist-hook:
 	cp -pR $(srcdir)/Tests/* $(distdir)/Tests
 	mkdir -p $(distdir)/ruby
 	cp -pR $(srcdir)/ruby/* $(distdir)/ruby
+	mkdir -p $(distdir)/R
+	cp -pR $(srcdir)/R/* $(distdir)/R
 
   include $(top_srcdir)/buildtools/conf/rules.mk
 

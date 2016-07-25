@@ -5444,6 +5444,7 @@ drop function pcre_replace(string, string, string, string);
 [ "alpha",	"public",	16,	"monetdb",	0	]
 [ "date_to_str",	"public",	16,	"monetdb",	0	]
 [ "degrees",	"public",	16,	"monetdb",	0	]
+[ "env",	"public",	16,	NULL,	0	]
 [ "epoch",	"public",	16,	"monetdb",	0	]
 [ "epoch",	"public",	16,	"monetdb",	0	]
 [ "epoch",	"public",	16,	"monetdb",	0	]
@@ -7426,6 +7427,8 @@ drop function pcre_replace(string, string, string, string);
 [ 12,	"SEQUENCE"	]
 [ 13,	"PROCEDURE"	]
 [ 14,	"BE_DROPPED"	]
+[ 15,	"TYPE"	]
+#drop function pcre_replace(string, string, string, string);
 
 # 13:32:07 >  
 # 13:32:07 >  "Done."
