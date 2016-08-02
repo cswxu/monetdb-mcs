@@ -293,7 +293,8 @@ instruction2str(MalBlkPtr mb, MalStkPtr stk,  InstrPtr p, int flg)
 			*t++ = '(';
 
 		for (i = 0; i < p->retc; i++) {
-			arg= renderTerm(mb, stk, p, i, flg);
+			//arg= renderTerm(mb, stk, p, i, flg);
+			arg= renderTerm(mb, stk, p, i, flg | LIST_MAL_TYPE);
 			snprintf(t,(len-(t-base)), "%s", arg);
 			GDKfree(arg);
 			advance(t,base,len);
