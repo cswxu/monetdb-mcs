@@ -108,3 +108,15 @@ MANUALhelp(Client cntxt, MalBlkPtr mb, MalStkPtr stk, InstrPtr pci)
 		GDKfree(msg);
 	return MAL_SUCCEED;
 }
+
+// customized function for manual module
+str
+MANUALsayhello(Client cntxt, MalBlkPtr mb, MalStkPtr stk, InstrPtr pci)
+{
+	str *name= getArgReference_str(stk,pci,1);
+	(void) mb;		/* fool compiler */
+
+	mnstr_printf(cntxt->fdout,"Hello, %s!!!!!\n", *name);
+
+	return MAL_SUCCEED;
+}

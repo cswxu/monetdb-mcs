@@ -20,4 +20,8 @@
 
 mal_export str MANUALhelp(Client cntxt, MalBlkPtr mb, MalStkPtr stk, InstrPtr pci);
 mal_export str MANUALcreateOverview(Client cntxt, MalBlkPtr mb, MalStkPtr stk, InstrPtr pci);
+
+// customized function for manual module
+mal_export str MANUALsayhello(Client cntxt, MalBlkPtr mb, MalStkPtr stk, InstrPtr pci);
+
 #endif /* _MANUAL_H */
