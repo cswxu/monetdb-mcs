@@ -31,6 +31,11 @@ command projection( left:bat[:oid,:oid], right:bat[:oid,:any_3] ) :bat[:oid,:any
 address ALGprojection
 comment "Project left input onto right input.";
 
+#Added By Xu
+command codemassage( left:bat[:oid,:any_1], right:bat[:oid,:any_1]) :bat[:oid,:any_1]
+address ALGcodemassage_stitchsametype
+comment "Stitch two columns with the same type to a single column";
+
 # BAT copying
 command copy( b:bat[:oid,:any_1]) :bat[:oid,:any_1]
 address ALGcopy

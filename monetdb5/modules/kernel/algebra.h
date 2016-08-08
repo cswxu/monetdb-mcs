@@ -47,6 +47,7 @@ mal_export str ALGcopy(bat *result, const bat *bid);
 mal_export str ALGsubunique2(bat *result, const bat *bid, const bat *sid);
 mal_export str ALGsubunique1(bat *result, const bat *bid);
 mal_export str ALGprojection(bat *result, const bat *lid, const bat *rid);
+mal_export str ALGcodemassage_stitchsametype(bat *result, const bat *lid, const bat *rid);	//added by XU
 mal_export str ALGtinter(bat *result, const bat *lid, const bat *rid);
 mal_export str ALGtdiff(bat *result, const bat *lid, const bat *rid);
 mal_export str ALGsample(bat *result, const bat *bid, const int *param);

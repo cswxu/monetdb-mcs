@@ -698,6 +698,13 @@ ALGprojection(bat *result, const bat *lid, const bat *rid)
 }
 
 str
+ALGcodemassage_stitchsametype(bat *result, const bat *lid, const bat *rid)
+{
+	return ALGbinary(result, lid, rid, BATcodemassage, "algebra.codemassage");
+}
+
+
+str
 ALGsubsort33(bat *result, bat *norder, bat *ngroup, const bat *bid, const bat *order, const bat *group, const bit *reverse, const bit *stable)
 {
 	BAT *bn = NULL, *on = NULL, *gn = NULL;

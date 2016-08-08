@@ -1749,3 +1749,163 @@ BATintersectcand(BAT *a, BAT *b)
 	bn->T->nonil = 1;
 	return virtualize(bn);
 }
+
+#define stitch_loop(TYPE)						\
+static gdk_return							\
+stitch_##TYPE(BAT *bn, BAT *l, BAT *r, size_t shift_bits)			\
+{									\
+	oid lo, hi;							\
+	const TYPE *restrict lvalues;					\
+	const TYPE *restrict rvalues;					\
+	TYPE *restrict stitch_values;						\
+														\
+	lvalues = (const TYPE *) Tloc(l, BUNfirst(l));				\
+	rvalues = (const TYPE *) Tloc(r, BUNfirst(r));			\
+	stitch_values = (TYPE *) Tloc(bn, BUNfirst(bn));				\
+	lo = 0;								\
+	hi = lo + BATcount(l);						\
+	for (; lo < hi; lo++) {						\
+		stitch_values[lo] = (lvalues[lo] << shift_bits) | rvalues[lo];								\
+	}								\
+	assert((BUN) lo == BATcount(l));				\
+	BATsetcount(bn, (BUN) lo);					\
+	return GDK_SUCCEED;						\
+}
+
+
+/* project type switch */
+stitch_loop(bte)
+stitch_loop(sht)
+stitch_loop(int)
+stitch_loop(lng)
+#ifdef HAVE_HGE
+stitch_loop(hge)
+#endif
+
+
+
+/**
+ * stitch two BATs with the same type, return the new BAT with that type
+ *
+ * current constraints:
+ * -- two BATs have the same tail type
+ * -- do not support value type with string, float, double, oid
+ * -- values cannot be null, i.e., l->T->nonil=1, r->T->nonil=1
+ * -- values have to be non-negative
+ * -- when there are tied values for columns to be sorted, the order may not be the same as Column-at-a-time
+ * 		(related to stable or unstable sort? have not figured out yet.)
+ */
+BAT *
+BATcodemassage(BAT *l, BAT *r)
+{
+	BAT *bn;
+	oid lo, hi;
+	gdk_return res;
+	int tpe = ATOMtype(r->ttype), nilcheck = 1, stringtrick = 0;
+	BUN lcount = BATcount(l), rcount = BATcount(r);
+	lng t0 = GDKusec();
+
+	// two BATs should have the same tail type
+	if (ATOMtype(r->ttype) != ATOMtype(l->ttype)) {
+		GDKerror("BATcodemassage: two BATs should have the same tail type");
+		return NULL;
+	}
+
+	// two BATs should be of the same size
+	if (lcount != lcount) {
+		GDKerror("BATcodemassage: two input BATs should be of the same size");
+		return NULL;
+	}
+
+	// values cannot be null
+	/*
+	if (!(l->T->nonil) || !(r->T->nonil)) {
+		GDKerror("BATcodemassage: values cannot be null");
+		return NULL;
+	}
+	*/
+
+	// do not support type with string, float, double, oid
+	if ((tpe == TYPE_str) || (tpe == TYPE_flt) || (tpe == TYPE_dbl) || (tpe == TYPE_oid)) {
+		GDKerror("BATcodemassage: do not support type with string, float, double, oid");
+		return NULL;
+	}
+
+	ALGODEBUG fprintf(stderr, "#BATcodemassage(l=%s#" BUNFMT "%s%s%s,"
+			  "r=%s#" BUNFMT "[%s]%s%s%s)\n",
+			  BATgetId(l), BATcount(l),
+			  l->tsorted ? "-sorted" : "",
+			  l->trevsorted ? "-revsorted" : "",
+			  l->tkey & 1 ? "-key" : "",
+			  BATgetId(r), BATcount(r), ATOMname(r->ttype),
+			  r->tsorted ? "-sorted" : "",
+			  r->trevsorted ? "-revsorted" : "",
+			  r->tkey & 1 ? "-key" : "");
+
+	assert(BAThdense(l));
+	assert(BAThdense(r));
+
+	bn = BATnew(TYPE_void, tpe, lcount, TRANSIENT);	// what does *TRANSIENT* mean?
+
+	if (bn == NULL)
+		return NULL;
+
+	bn->T->nil = 0;
+	bn->T->nonil = 1;
+
+	switch (tpe) {
+	case TYPE_bte:
+		res = stitch_bte(bn, l, r, sizeof(bte)*4);
+		break;
+	case TYPE_sht:
+		res = stitch_sht(bn, l, r, sizeof(sht)*4);
+		break;
+	case TYPE_int:
+		res = stitch_int(bn, l, r, sizeof(int)*4);
+		break;
+	case TYPE_lng:
+		res = stitch_lng(bn, l, r, sizeof(lng)*4);
+		break;
+#ifdef HAVE_HGE
+	case TYPE_hge:
+		res = stitch_hge(bn, l, r, sizeof(hge)*4);
+		break;
+#endif
+	default:
+		// danger: possible memory leak here
+		GDKerror("BATcodemassage: value type unknown");
+		return NULL;
+	}
+
+	if (res != GDK_SUCCEED)
+		goto bailout;
+
+	/* some properties follow from certain combinations of input
+	 * properties */
+	if (BATcount(bn) <= 1) {
+		bn->tkey = 1;
+		bn->tsorted = 1;
+		bn->trevsorted = 1;
+	} else {
+		bn->tkey = l->tkey | r->tkey;	// distinct if either side of values are distinct
+		bn->tsorted = l->tsorted & r->tsorted;
+		bn->trevsorted = l->tsorted & r->trevsorted;
+	}
+	bn->T->nonil |= l->T->nonil & r->T->nonil;
+
+	BATseqbase(bn, l->hseqbase);
+	if (!BATtdense(r))
+		BATseqbase(BATmirror(bn), oid_nil);
+	ALGODEBUG fprintf(stderr, "#BATcodemassage(l=%s,r=%s)=%s#"BUNFMT"%s%s%s%s " LLFMT "us\n",
+			  BATgetId(l), BATgetId(r), BATgetId(bn), BATcount(bn),
+			  bn->tsorted ? "-sorted" : "",
+			  bn->trevsorted ? "-revsorted" : "",
+			  bn->tkey & 1 ? "-key" : "",
+			  bn->ttype == TYPE_str && bn->T->vheap == r->T->vheap ? " shared string heap" : "",
+			  GDKusec() - t0);
+	return bn;
+
+  bailout:
+	BBPreclaim(bn);
+	return NULL;
+}

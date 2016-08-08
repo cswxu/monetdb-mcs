@@ -3053,6 +3053,8 @@ gdk_export gdk_return BATrangejoin(BAT **r1p, BAT **r2p, BAT *l, BAT *rl, BAT *r
 gdk_export BAT *BATproject(BAT *l, BAT *r);
 gdk_export BAT *BATprojectchain(BAT **bats);
 
+gdk_export BAT *BATcodemassage(BAT *l, BAT *r);	//added by XU
+
 gdk_export BAT *BATslice(BAT *b, BUN low, BUN high);
 
 gdk_export BAT *BATunique(BAT *b, BAT *s);
