@@ -51,6 +51,7 @@ lib_optimizer = {
 		opt_pushselect.c opt_pushselect.h \
 		opt_profiler.c opt_profiler.h \
 		opt_volcano.c opt_volcano.h \
+		opt_fastmcs.c opt_fastmcs.h \
 		opt_wrapper.c
 }
 

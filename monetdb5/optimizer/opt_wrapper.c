@@ -55,6 +55,7 @@
 #include "opt_reorder.h"
 #include "opt_statistics.h"
 #include "opt_volcano.h"
+#include "opt_fastmcs.h"	//added By XU
 
 struct{
 	str nme;
@@ -88,6 +89,7 @@ struct{
 	{"remoteQueries", &OPTremoteQueriesImplementation},
 	{"reorder", &OPTreorderImplementation},
 	{"volcano", &OPTvolcanoImplementation},
+	{"fastmcs", &OPTfastmcsImplementation},
 	{0,0}
 };
 mal_export str OPTwrapper(Client cntxt, MalBlkPtr mb, MalStkPtr stk, InstrPtr p);

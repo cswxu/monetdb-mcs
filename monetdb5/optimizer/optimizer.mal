@@ -350,5 +350,14 @@ pattern optimizer.pushselect(mod:str, fcn:str):str
 address OPTwrapper
 comment "Push selects down projections";
 
+#by Xu
+#fast multi-column sorting optimization
+
+pattern optimizer.fastmcs():str
+address OPTwrapper;
+pattern optimizer.fastmcs(mod:str, fcn:str):str
+address OPTwrapper
+comment "Identify instructions carrying out multi-column sorting and re-write them to the optimal massage plan";
+
 optimizer.prelude();
 

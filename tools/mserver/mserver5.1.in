@@ -295,6 +295,12 @@ It is use mainly to make some tests work deterministically, i.e.,
 avoid ambigious output, by avoiding parallelism.
 .\" this documentation must be kept in sync with the respective code in monetdb5/optimizer/opt_pipes.c
 sequential_pipe=inline,remap,costModel,coercions,evaluate,emptySet,aliases,pushselect,mergetable,deadcode,commonTerms,joinPath,reorder,deadcode,reduce,matpack,querylog,multiplex,garbageCollector
+.TP
+.B enable_mcs_pipe
+Experimental pipelines: add fastmcs optimizer to the default_pipe.
+Do not use any of these pipelines in production.
+.\" this documentation must be kept in sync with the respective code in monetdb5/optimizer/opt_pipes.c
+enable_mcs_pipe=inline,remap,costModel,coercions,evaluate,emptySet,aliases,pushselect,mitosis,mergetable,deadcode,commonTerms,joinPath,reorder,deadcode,reduce,matpack,dataflow,querylog,multiplex,fastmcs,garbageCollector
 .SH CONFIG FILE FORMAT
 The configuration file readable by
 .I mserver5
